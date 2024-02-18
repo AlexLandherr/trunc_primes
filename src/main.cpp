@@ -1,5 +1,6 @@
 #include "include/functions.h"
 #include <iostream>
+#include <cstdint>
 
 /*
 The number 3797 has an interesting property. Being prime itself, it is possible to continuously
@@ -12,7 +13,8 @@ NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
 */
 
 int main() {
-    //Write your C++ code here.
+    int64_t test_prime = 3797;
+    std::cout << "Is " << test_prime << " a truncateable prime?: " << std::boolalpha << func::is_truncateable_prime(test_prime) << '\n';
 
     return 0;
 }

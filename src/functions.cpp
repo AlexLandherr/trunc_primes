@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <cstdint>
+#include <string>
 
 /*
 The number 3797 has an interesting property. Being prime itself, it is possible to continuously
@@ -37,5 +38,25 @@ namespace func {
         }
 
         return true;
+    }
+
+    bool is_truncateable_prime(int64_t prime) {
+        std::string prime_str = std::to_string(prime);
+        bool left_to_right = true;
+        bool right_to_left = true;
+
+        for (unsigned int j = 1; j < prime_str.length(); j++) {
+            if (!func::is_prime(std::stoll(prime_str.substr(j)))) {
+                left_to_right = false;
+            }
+        }
+
+        for (unsigned int i = 1; i < prime_str.length(); i++) {
+            if (!func::is_prime(std::stoll(prime_str.substr(0, (prime_str.length() - i))))) {
+                right_to_left = false;
+            }
+        }
+
+        return (left_to_right && right_to_left);
     }
 }
