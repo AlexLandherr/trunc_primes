@@ -13,7 +13,7 @@ NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
 */
 
 int main() {
-    int64_t test_prime = 3797;
+    int64_t test_prime = 23;
     std::cout << "Is " << test_prime << " a truncateable prime?: " << std::boolalpha << func::is_truncateable_prime(test_prime) << '\n';
 
     return 0;

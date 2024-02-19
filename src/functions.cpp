@@ -45,14 +45,16 @@ namespace func {
         bool left_to_right = true;
         bool right_to_left = true;
 
-        for (unsigned int j = 1; j < prime_str.length(); j++) {
-            if (!func::is_prime(std::stoll(prime_str.substr(j)))) {
+        //Left to right loop.
+        for (unsigned long i = 1; i < prime_str.length(); i++) {
+            if (!func::is_prime(std::stoll(prime_str.substr(i)))) {
                 left_to_right = false;
             }
         }
 
-        for (unsigned int i = 1; i < prime_str.length(); i++) {
-            if (!func::is_prime(std::stoll(prime_str.substr(0, (prime_str.length() - i))))) {
+        //Right to left loop.
+        for (unsigned long j = 1; j < prime_str.length(); j++) {
+            if (!func::is_prime(std::stoll(prime_str.substr(0, (prime_str.length() - j))))) {
                 right_to_left = false;
             }
         }
