@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <cstdint>
 #include <string>
+#include <vector>
 
 /*
 The number 3797 has an interesting property. Being prime itself, it is possible to continuously
@@ -54,11 +55,35 @@ namespace func {
 
         //Right to left loop.
         for (unsigned long j = 1; j < prime_str.length(); j++) {
-            if (!func::is_prime(std::stoll(prime_str.substr(0, (prime_str.length() - j))))) {
+            if (!is_prime(std::stoll(prime_str.substr(0, (prime_str.length() - j))))) {
                 right_to_left = false;
             }
         }
 
         return (left_to_right && right_to_left);
+    }
+
+    bool contains_only(std::string &allowed, std::string str) {
+        return str.find_first_not_of(allowed) != std::string::npos;
+    }
+
+    int64_t get_answer() {
+        std::string allowed_chars = "024568";
+        std::vector<int64_t> truncateable_primes;
+        int64_t counter = 0;
+        int64_t i = 11;
+        while (counter < 11) {
+            if (contains_only(allowed_chars, std::to_string(i))) {
+                if (is_prime(i)) {
+                    if (is_truncateable_prime(i)) {
+                        truncateable_primes.push_back(i);
+                        counter++;
+                    }
+                }
+            }
+            i += 2;
+        }
+
+        return std::reduce(truncateable_primes.begin(), truncateable_primes.end());
     }
 }
